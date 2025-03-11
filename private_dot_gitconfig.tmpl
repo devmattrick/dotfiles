@@ -1,0 +1,50 @@
+[init]
+  defaultBranch = main
+[pull]
+  ff = only
+  rebase = true
+[push]
+  autoSetupRemote = true
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  renames = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[help]
+  autocorrect = prompt
+[merge]
+  conflictstyle = zdiff3
+
+[core]
+{{- if eq .chezmoi.os "windows" }}
+  sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+{{- else if and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+  sshCommand = ssh.exe
+{{- end -}}
+
+[user]
+  name = {{ .user.name | quote }}
+  email = {{ .user.email | quote }}
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJ7plqu/62IIaNdHf4QWn8zFM5sJAP0peftiheVOhI5
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
+[gpg "ssh"]
+{{- if eq .chezmoi.os "linux" }}
+  program = "/opt/1Password/op-ssh-sign"
+{{- else if eq .chezmoi.os "darwin"}}
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{- end -}}

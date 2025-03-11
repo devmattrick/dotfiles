@@ -1,0 +1,6 @@
+# Configure preferred editors
+export EDITOR=micro
+export VISUAL=code
+
+# Configure path variables
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
