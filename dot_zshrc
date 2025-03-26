@@ -2,7 +2,7 @@
 autoload -Uz compinit && compinit
 
 # Ignore case in completions
-zstyle ':completion:*' matcher-list m:{[:lower:][:upper:]}={[:upper:][:lower:]}
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 
 # Color file completions
 zstyle ':completion:*' list-colors ''
@@ -12,7 +12,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' format '%B%d%b'
 
 # Save history to XDG compliant location
-HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/histfile
+HISTFILE=~/.zsh_history
 
 SAVEHIST=10000
 
@@ -28,3 +28,8 @@ select-word-style bash
 
 # Initialize Starship prompt
 eval "$(starship init zsh)"
+
+# Initialize fzf shell integration if it's installed
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
