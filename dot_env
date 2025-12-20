@@ -1,0 +1,3 @@
+# Configure preferred editors
+export EDITOR=micro
+export VISUAL=code
