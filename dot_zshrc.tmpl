@@ -124,3 +124,10 @@ export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 # Load environment variables from ~/.env if it exists
 emulate sh -c '[ -f "$HOME/.env" ] && . "$HOME/.env"'
 
+# Set up fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+
+{{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "cachyos") }}
+# Alias task to go-task on Arch-based systems
+alias task='go-task'
+{{ end }}

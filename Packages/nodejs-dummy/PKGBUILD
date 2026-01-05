@@ -1,0 +1,14 @@
+pkgname=nodejs-dummy
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='Dummy package for nodejs'
+provides=('nodejs=99.0.0')
+arch=('any')
+
+build() {
+	true
+}
+
+package() {
+	true
+}
