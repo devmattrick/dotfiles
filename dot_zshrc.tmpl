@@ -131,3 +131,6 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 # Alias task to go-task on Arch-based systems
 alias task='go-task'
 {{ end }}
+
+# Enable task zsh completions
+eval "$(task --completion zsh)"
