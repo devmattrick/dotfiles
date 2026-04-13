@@ -133,3 +133,6 @@ alias task='go-task'
 
 # Enable task zsh completions
 eval "$(task --completion zsh)"
+
+# Alias for running claude in a tmp directory
+alias claude-tmp='cd $(mktemp -d /tmp/claude-XXXXXX) && claude'
