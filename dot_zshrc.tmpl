@@ -32,9 +32,6 @@ setopt HIST_REDUCE_BLANKS
 # Spell correction for commands
 setopt CORRECT  
 
-# Save commands to history as you run them
-setopt INC_APPEND_HISTORY
-
 # Emacs keybindings
 bindkey -e
 
@@ -125,7 +122,9 @@ export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 emulate sh -c '[ -f "$HOME/.env" ] && . "$HOME/.env"'
 
 # Set up fnm
-eval "$(fnm env --use-on-cd --shell zsh)"
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
 
 {{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "cachyos") }}
 # Alias task to go-task on Arch-based systems
