@@ -52,3 +52,7 @@ style = "purple"
 # ssh_only = false
 # format = "[@$hostname]($style) "
 # style = "green dimmed"
+
+[character]
+success_symbol = "[\\$](green)"
+error_symbol = "[\\$](red)"
