@@ -126,10 +126,6 @@ if command -v fnm >/dev/null 2>&1; then
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
 
-{{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "cachyos") }}
-# Alias task to go-task on Arch-based systems
-alias task='go-task'
-{{ end }}
 
 # Enable task zsh completions
 eval "$(task --completion zsh)"
@@ -139,3 +135,24 @@ alias claude-tmp='(cd $(mktemp -d /tmp/claude-XXXXXX) && claude)'
 
 # Alias for docker compose
 alias dc='docker compose'
+
+{{- if eq .chezmoi.os "linux" }}
+
+{{ if or (eq .chezmoi.osRelease.id "arch") (eq .chezmoi.osRelease.id "cachyos") }}
+## Arch-specific configuration
+
+# Alias task to go-task on Arch-based systems
+alias task='go-task'
+{{ end }}
+
+{{- if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+## WSL-specific configuration
+
+# Start the WSL2 SSH agent if it's not already running
+eval "$(/usr/sbin/wsl2-ssh-agent)"
+
+# Alias op to op.exe in WSL to use the Windows 1Password CLI
+alias op='op.exe'
+{{- end }}
+
+{{- end }}
