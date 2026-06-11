@@ -126,10 +126,6 @@ if command -v fnm >/dev/null 2>&1; then
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
 
-
-# Enable task zsh completions
-eval "$(task --completion zsh)"
-
 # Alias for running claude in a tmp directory
 alias claude-tmp='(cd $(mktemp -d /tmp/claude-XXXXXX) && claude)'
 
@@ -156,3 +152,6 @@ alias op='op.exe'
 {{- end }}
 
 {{- end }}
+
+# Enable task zsh completions
+eval "$(task --completion zsh)"
