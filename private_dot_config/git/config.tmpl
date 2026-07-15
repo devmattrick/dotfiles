@@ -1,8 +1,9 @@
 [init]
   defaultBranch = main
 [pull]
-  ff = only
   rebase = true
+[rebase]
+  autoStash = true
 [push]
   autoSetupRemote = true
 [column]
@@ -23,6 +24,13 @@
   autocorrect = prompt
 [merge]
   conflictstyle = zdiff3
+  autoStash = true
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 
 [user]
   name = {{ .user.name | quote }}
